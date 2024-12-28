@@ -75,9 +75,30 @@ db.collection_name.findOne({"Name":"Honey"})
 db.BBD.update({"name":"Honey"},{
         "name":"Honey",
         "CH":"c++",
+
         "Dep":"SOCA"
     })
 
+7----------------->Indexing
+db.collection_name_createIndex({field:1})
+
+8------------------>CRUD Operations:
+ i>CREATE (Add data) :db.collection_name.inserOne({name:"Ganesh"})
+ ii>READ(fetch data) : db.collection_name.find({name:"Ganesh"})
+ iii>Update (Modify data) : db.collection_name.updateOne({{name:"Ganesh"},{$set: {age:21}})
+ iv>Delete (Remove data) : db.collection_name.deleteOne({name :"Ganesh"})
 
 
+9------------------->Aggregation :---(Grouping data items in one or more collections.
+db.collection_name.aggregate([{$match:{category:"electronics"}},
+                              {$group: {_id:null,totalsales:{$sum:"$amount"}}])
 
+
+10--------------------------------->(Cursor Methods)
+   i>next:
+      cursor=db.collection_name.find()
+      document=cursor.next()
+      print(document)
+
+   ii>
+       db.collection_name.find().foreach(doc => printJson(doc))
